@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#007bff" />
+  <title>Rekening / E-Wallet Nelsen Niko</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --primary: #007bff;
+      --primary-hover: #0056b3;
+      --bg: #f0f2f5;
+      --white: #fff;
+      --text: #333;
+      --label: #555;
+      --border: #ddd;
+      --success: #3db2ff;
+      --toast-text: #ffffff;
+      --static-bg: #f9f9f9;
+      --radius: 12px;
+      --shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+      --spacing-xs: 0.5rem;
+      --spacing-sm: 1rem;
+      --spacing-md: 1.5rem;
+      --spacing-lg: 2rem;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: var(--spacing-sm);
+      min-height: 100vh;
+    }
+
+    .card {
+      background: var(--white);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: var(--spacing-lg);
+      max-width: 480px;
+      width: 100%;
+    }
+
+    h2 {
+      text-align: center;
+      color: var(--primary);
+      font-weight: 700;
+      margin-bottom: var(--spacing-lg);
+    }
+
+    .field {
+      margin-bottom: var(--spacing-md);
+    }
+
+    .field label {
+      display: block;
+      margin-bottom: var(--spacing-xs);
+      font-weight: 600;
+      color: var(--label);
+    }
+
+    select, input, .value {
+      width: 100%;
+      font-size: 1rem;
+      padding: var(--spacing-sm) var(--spacing-md);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: var(--white);
+      color: var(--text);
+    }
+
+    input[readonly] {
+      background: var(--static-bg);
+    }
+
+    select:focus, input:focus {
+      outline: none;
+      border-color: var(--primary);
+    }
+
+    .rekening-box {
+      display: flex;
+      gap: var(--spacing-xs);
+      align-items: center;
+    }
+
+    .copy-btn {
+      flex-shrink: 0;
+      width: 42px;
+      height: 42px;
+      background: var(--primary);
+      color: var(--white);
+      border: none;
+      border-radius: var(--radius);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.1s;
+    }
+
+    .copy-btn:hover {
+      background: var(--primary-hover);
+      transform: translateY(-1px);
+    }
+
+    .copy-btn:active {
+      transform: translateY(0);
+    }
+
+    .copy-btn svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    .toast {
+      margin-top: var(--spacing-md);
+      background: var(--success);
+      color: var(--toast-text);
+      padding: var(--spacing-sm) var(--spacing-md);
+      border-radius: var(--radius);
+      text-align: center;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease, visibility 0.3s ease;
+      font-weight: 500;
+    }
+
+    .toast.show {
+      opacity: 1;
+      visibility: visible;
+    }
+    #id2 {
+        color: #dc3545;
+    }
+  </style>
+</head>
+<body>
+  <main class="card">
+    <h2>Rekening / E-Wallet <i id="id2">Nelsen Niko</i></h2>
+
+    <div class="field">
+      <label for="bankSelect">Pilih Bank / E-Wallet</label>
+      <select id="bankSelect" aria-label="Pilih bank atau e-wallet">
+        <option value="bri">Bank BRI</option>
+        <option value="bsi">BSI</option>
+        <option value="superbank">SuperBank</option>
+        <option value="permatabank">PermataBank</option>
+        <option value="ovo">OVO</option>
+        <option value="dana">DANA</option>
+        <option value="gopay">Gopay</option>
+      </select>
+    </div>
+
+    <div id="rekeningDetail">
+      <div class="field">
+        <label>Nama Bank / E-Wallet</label>
+        <div class="value" id="bankName">-</div>
+      </div>
+      <div class="field">
+        <label>Kode Bank</label>
+        <div class="value" id="bankCode">-</div>
+      </div>
+      <div class="field">
+        <label>Nomor Rekening</label>
+        <div class="rekening-box">
+          <input type="text" id="rekeningInput" readonly inputmode="numeric">
+          <button class="copy-btn" id="copyButton" aria-label="Salin nomor rekening">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16">
+              <path d="M10 1.5v1h2.5a.5.5 0 0 1 .5.5V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V3a.5.5 0 0 1 .5-.5H6v-1a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1zM6 2.5V3h4v-.5a.5.5 0 0 0-.5-.5H6.5a.5.5 0 0 0-.5.5z"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+      <div class="field">
+        <label>Nama Pemilik</label>
+        <div class="value" id="ownerName">-</div>
+      </div>
+    </div>
+
+    <div class="toast" id="toast">✅ Nomor disalin!</div>
+  </main>
+
+<script>
+  const $ = id => document.getElementById(id);
+  let rekeningData = {};
+
+  function updateRekening() {
+    const sel = $("bankSelect").value;
+    const d = rekeningData[sel] || {};
+    $("bankName").textContent = d.bank || "-";
+    $("bankCode").textContent = d.kode || "-";
+    $("rekeningInput").value = d.nomor || "";
+    $("ownerName").textContent = d.pemilik || "-";
+  }
+
+  function showToast() {
+    const t = $("toast");
+    t.classList.add("show");
+    setTimeout(() => t.classList.remove("show"), 3000);
+  }
+
+  function copyRekening() {
+    const inp = $("rekeningInput");
+    inp.select();
+    inp.setSelectionRange(0, 99999);
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText(inp.value).then(showToast);
+    } else {
+      document.execCommand('copy');
+      showToast();
+    }
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
+    fetch("rekening.json")
+      .then(res => res.json())
+      .then(data => {
+        rekeningData = data;
+        $("bankSelect").value = "bri";
+        updateRekening();
+        $("bankSelect").addEventListener("change", updateRekening);
+        $("copyButton").addEventListener("click", copyRekening);
+      })
+      .catch(err => {
+        console.error("Gagal memuat data rekening:", err);
+        alert("Gagal memuat data rekening.");
+      });
+  });
+</script>
+</body>
+</html>
