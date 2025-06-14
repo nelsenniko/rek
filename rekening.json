@@ -1,0 +1,23 @@
+{
+    "bri": {
+        "bank": "Bank BRI", "kode": "002", "nomor": "813201026306538", "pemilik": "Nelsen Niko"
+    },
+    "bsi": {
+        "bank": "Bank Syariah Indonesia", "kode": "451", "nomor": "7193883607", "pemilik": "Nelsen Niko"
+    },
+    "superbank": {
+        "bank": "SuperBank", "kode": "562", "nomor": "000028454387", "pemilik": "Nelsen Niko"
+    },
+    "permatabank": {
+        "bank": "PermataBank", "kode": "013", "nomor": "8528085328736706", "pemilik": "Nelsen Niko"
+    },
+    "ovo": {
+        "bank": "OVO", "kode": "-", "nomor": "085328736706", "pemilik": "Nelsen Niko"
+    },
+    "dana": {
+        "bank": "DANA", "kode": "-", "nomor": "085328736706", "pemilik": "Nelsen Niko"
+    },
+    "gopay": {
+        "bank": "Gopay", "kode": "-", "nomor": "085328736706", "pemilik": "Nelsen Niko"
+    }
+}
